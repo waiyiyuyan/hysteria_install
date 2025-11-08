@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # Hysteria2 用户模式守护脚本（无 root / 免费 VPS / 超低内存）
 # 功能: 自动下载、生成证书、后台启动、守护进程自动重启
+# 增加了 QUIC 配置和带宽限制
 
 set -euo pipefail
 
@@ -13,6 +14,16 @@ SNI="www.bing.com"               # 🔹 TLS SNI，用于混淆，可按需修改
 ALPN="h3"                        # 🔹 ALPN协议，可按需修改，通常不用改
 DEFAULT_PORT=22222                # 🔹 默认端口，用户可在执行脚本时传入新端口
 HYSTERIA_VER="v2.6.5"            # 🔹 hysteria2 二进制版本，如需升级可修改
+
+# 可选高级配置（非必须，可根据 VPS 性能调整）
+BANDWIDTH_UP="200mbps"            # 🔹 上传带宽限制
+BANDWIDTH_DOWN="200mbps"          # 🔹 下载带宽限制
+QUIC_MAX_IDLE="10s"               # 🔹 QUIC 空闲超时
+QUIC_MAX_STREAMS=4                # 🔹 QUIC 最大并发流数
+QUIC_INIT_STREAM_WINDOW=65536     # 🔹 初始流窗口大小
+QUIC_MAX_STREAM_WINDOW=131072     # 🔹 最大流窗口大小
+QUIC_INIT_CONN_WINDOW=131072      # 🔹 初始连接窗口大小
+QUIC_MAX_CONN_WINDOW=262144       # 🔹 最大连接窗口大小
 # ========================================================
 
 # ---------------- 使用命令行端口参数覆盖默认端口 ----------------
@@ -95,8 +106,18 @@ tls:
 auth:
   type: password
   password: "${PASSWORD}"
+bandwidth:
+  up: "${BANDWIDTH_UP}"
+  down: "${BANDWIDTH_DOWN}"
+quic:
+  max_idle_timeout: "${QUIC_MAX_IDLE}"
+  max_concurrent_streams: ${QUIC_MAX_STREAMS}
+  initial_stream_receive_window: ${QUIC_INIT_STREAM_WINDOW}
+  max_stream_receive_window: ${QUIC_MAX_STREAM_WINDOW}
+  initial_conn_receive_window: ${QUIC_INIT_CONN_WINDOW}
+  max_conn_receive_window: ${QUIC_MAX_CONN_WINDOW}
 EOF
-  echo "✅ server.yaml 配置完成"
+  echo "✅ server.yaml 配置完成（含 QUIC 和带宽限制）"
 }
 
 # ---------------- 后台启动函数 ----------------
