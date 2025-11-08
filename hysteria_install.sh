@@ -8,7 +8,7 @@ set -e
 # ---------- 默认配置 ----------
 HYSTERIA_VERSION="v2.6.5"
 DEFAULT_PORT=22222         # 自适应端口
-AUTH_PASSWORD='?-w]PVC2vT^JHm2'   # 已替换为你的密码（请妥善保管）
+AUTH_PASSWORD="?-w]PVC2vT^JHm2"   # 建议修改为复杂密码
 CERT_FILE="cert.pem"
 KEY_FILE="key.pem"
 SNI="www.bing.com"
@@ -70,7 +70,7 @@ ensure_cert() {
         echo "✅ 发现证书，使用现有 cert/key。"
         return
     fi
-    echo "🔑 未见证书，使用 openssl 生成自签证书（prime256v1）..."
+    echo "🔑 未发现证书，使用 openssl 生成自签证书（prime256v1）..."
     openssl req -x509 -nodes -newkey ec -pkeyopt ec_paramgen_curve:prime256v1 \
         -days 3650 -keyout "$KEY_FILE" -out "$CERT_FILE" -subj "/CN=${SNI}"
     echo "✅ 证书生成成功。"
@@ -116,7 +116,7 @@ print_connection_info() {
     echo "📋 服务器信息:"
     echo "   🌐 IP地址: $IP"
     echo "   🔌 端口: $SERVER_PORT"
-    echo "   🔑 密码: ${AUTH_PASSWORD}"
+    echo "   🔑 密码: $AUTH_PASSWORD"
     echo ""
     echo "📱 节点链接（SNI=${SNI}, ALPN=${ALPN}）:"
     echo "hysteria2://${AUTH_PASSWORD}@${IP}:${SERVER_PORT}?sni=${SNI}&alpn=${ALPN}#Hy2-Bing"
@@ -133,8 +133,6 @@ print_connection_info() {
     echo "http:"
     echo "  listen: 127.0.0.1:8080"
     echo "=========================================================================="
-    echo ""
-    echo "注意：某些客户端解析 URL 时可能需要对密码部分进行 URL encode（例如将 ']' 编码为 %5D）。"
 }
 
 # ---------- 主逻辑 ----------
@@ -149,3 +147,5 @@ main() {
 }
 
 main "$@"
+
+
