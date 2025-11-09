@@ -12,7 +12,7 @@ set -euo pipefail
 PASSWORD="?-w]PVC2vT^JHm2"       # 🔹 用户密码（客户端连接时用），建议修改为复杂密码
 SNI="www.bing.com"               # 🔹 TLS SNI，用于混淆，可按需修改
 ALPN="h3"                        # 🔹 ALPN协议，可按需修改，通常不用改
-DEFAULT_PORT=22222                # 🔹 默认端口，用户可在执行脚本时传入新端口
+DEFAULT_PORT=55000                # 🔹 默认端口，用户可在执行脚本时传入新端口
 HYSTERIA_VER="v2.6.5"            # 🔹 hysteria2 二进制版本，如需升级可修改
 
 # 可选高级配置（非必须，可根据 VPS 性能调整）
