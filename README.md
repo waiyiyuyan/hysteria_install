@@ -28,13 +28,13 @@
 
 	listen: ":port"	# 当只有端口没有 IP 地址时，服务器将监听所有可用的 IPv4 和 IPv6 地址。要仅监听 IPv4，可以使用 0.0.0.0:443。要仅监听 IPv6，可以使用 [::]:443。
 
-	tls:
+	tls: # 每次 TLS 握手时都会读取证书。可以直接更新证书文件而无需重启服务端
 	  cert: your_cert.crt # 这就是 openssl 生成的证书
 	  key: your_key.key
 
 	auth:
 	  type: password
-	  password: Se7RAuFZ8Lzg	# 客户端密码， 客户端那边需要与服务器这边完全一致
+	  password: Se7RAuFZ8Lzg	# 用自己选的强密码进行替换。 客户端那边需要与服务器这边完全一致
 
 	masquerade:	# 这里是伪装网站，假装自己是必应，更详细的解释看官方文档
 	  type: proxy
@@ -45,7 +45,7 @@
 	obfs:	# 将数据包混淆成没有特征的 UDP 包。此功能需要一个混淆密码，密码在客户端和服务端必须相同。
 	  type: salamander
 	  salamander:
-		password: Se7RAuFZ8Lzg # 混淆密码，可以定制，位数不能太少，否则服务器报错，懒得写，就跟密码一样
+		password: Se7RAuFZ8Lzg # 替换为你的混淆密码。密码一定要长，太短启动服务端时会报错
 
 
 客户端配置.yaml 这里的配置是针对 hysteria2 客户端的，其他第三方的客户端配置，YouTube 有教学
