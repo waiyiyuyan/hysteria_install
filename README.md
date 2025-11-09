@@ -4,15 +4,15 @@
 
 首先说明的是，尤其是白嫖 vps 的人，并不是白嫖一个 vps 就能搭建 hysteria2 的。需要测试 UDP 出站和入站是否正常，只有在正常的情况下，hytseria2 才能搭建成功，检测出站，入站可以问AI ，它会告诉你如何检测的，至于那个脚本，也是用chatGPT 写的，不一定行，所以写个手搓版的。
 
-1. uname -m 查看 服务器架构
+1. 查看 服务器架构 uname -m
 
-2. 下载hysteria2 x86_64 下载地址，其他架构，下载相应的版本就行了
+3. 下载hysteria2 x86_64 下载地址，其他架构，下载相应的版本就行了
 	https://github.com/apernet/hysteria/releases/download/app%2Fv2.6.5/hysteria-linux-amd64
 
-3. 获取本机公网IP	 三个查公网IP的地址，任选一个
+4. 获取本机公网IP	 三个查公网IP的地址，任选一个
 	curl ipinfo.io / https://api.ipify.org / ifconfig.me
 	
-4. 创建自有证书
+5. 创建自有证书
 	服务器
 	openssl req -x509 -nodes -days 3650 -newkey rsa:4096 -keyout your_key.key -out your_cert.crt -subj "/CN=VPS_IP" -addext "subjectAltName = IP:VPS_IP"
 	
@@ -24,7 +24,7 @@
 		  insecure: true	#禁用证书，然后启用 pinSHA256
 		  pinSHA256: 49:99:F4:F5:6F:F5:89:C1:FD:AF:83:33:1A:AD:20:7F:F0:29:B0:70:7B:19:0C:1C:5C:59:6A:DA:BA:26:A1:7E
 
-5. 服务端配置.yaml
+6. 服务端配置.yaml
 ```
 	listen: ":port"	# 当只有端口没有 IP 地址时，服务器将监听所有可用的 IPv4 和 IPv6 地址。要仅监听 IPv4，可以使用 0.0.0.0:443。要仅监听 IPv6，可以使用 [::]:443。
 
