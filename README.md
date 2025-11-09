@@ -46,10 +46,11 @@
 	  type: salamander
 	  salamander:
 		password: Se7RAuFZ8Lzg # 替换为你的混淆密码。密码一定要长，太短启动服务端时会报错
-
+```
 
 客户端配置.yaml 这里的配置是针对 hysteria2 客户端的，其他第三方的客户端配置，YouTube 有教学
 
+```
 	server: IP:Port # 连接服务器的IP:Port 
   
 	auth: Se7RAuFZ8Lzg	# 连接服务器的密码
@@ -66,7 +67,7 @@
 	  listen: 127.0.0.1:1080 
 	http:
 	  listen: 127.0.0.1:8080
-    
+```   
 目前只测试了这些字段，还有许多字段没有测试。
 
 最后服务端运行 ./hysteria server -c 服务端配置.yaml
