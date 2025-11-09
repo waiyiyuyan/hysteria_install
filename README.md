@@ -26,7 +26,7 @@
 
 5. 服务端配置.yaml
 
-	listen: ":port"	# 这个有讲究，不是随便一个端口就行，配不好，无法使用
+	listen: ":port"	# 当只有端口没有 IP 地址时，服务器将监听所有可用的 IPv4 和 IPv6 地址。要仅监听 IPv4，可以使用 0.0.0.0:443。要仅监听 IPv6，可以使用 [::]:443。
 
 	tls:
 	  cert: your_cert.crt # 这就是 openssl 生成的证书
