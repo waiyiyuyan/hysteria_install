@@ -95,8 +95,9 @@ auth:
 masquerade:
   type: proxy
   proxy:
-    url: "https://www.bing.com/"
-    rewriteHost: true
+    url: "https://www.bing.com/" # 要代理的网站的 URL。
+    rewriteHost: true # 是否重写 Host 头以匹配被代理的网站。如果目标网站通过 Host 识别请求的网站，这个选项是必须的。
+    insecure: false # 禁用对代理网站的 TLS 验证。
 
 obfs:
   type: salamander
