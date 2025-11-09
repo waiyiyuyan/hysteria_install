@@ -116,7 +116,7 @@ obfs:
 将下面示例保存为客户端配置（或对应第三方客户端的字段），并替换 `IP:Port`、密码与 `pinSHA256`：
 
 ```yaml
-server: VPS_IP:55000
+server: VPS_IP:55000 # 字段用于指定客户端应连接到的 Hysteria 服务器地址。地址可以是 host:port 或仅 host。如果省略端口，默认为 443。还可以选择使用 Hysteria 2 URI（hysteria2://）。在这种情况下，由于 URI 已经包括密码和一些其他设置，就不需要再在配置中单独指定它们。Hysteria 2 URI（hysteria2://）是由服务端生成的，要生成这种连接，服务端的把配置的字段都组合成以hysteria2://开头的链接
 
 auth: Se7RAuFZ8Lzg
 
