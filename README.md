@@ -122,6 +122,7 @@ server: VPS_IP:55000 # 字段用于指定客户端应连接到的 Hysteria 服�
 auth: Se7RAuFZ8Lzg
 
 tls:
+  sni: 这里填写伪装域名，与 服务端的 masquerade: 字段一致
   insecure: true
   pinSHA256: 49:99:F4:F5:6F:F5:89:C1:FD:AF:83:33:1A:AD:20:7F:F0:29:B0:70:7B:19:0C:1C:5C:59:6A:DA:BA:26:A1:7E
 
